@@ -1,7 +1,7 @@
 import { client } from "../../libs/client";
 import Link from 'next/link'
 
-export default function BlogId({ categories }: any) {
+export default function Blogs({ categories }: any) {
   return (
     <div>
       <ul>
