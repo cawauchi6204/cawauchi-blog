@@ -12,7 +12,9 @@ const Layout = ({ children }: Props) => {
           <a>About </a>
         </Link>
       </nav>
-      {children}
+      <div className="max-w-4xl m-auto">
+        {children}
+      </div>
     </div>
   );
 };
