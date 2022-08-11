@@ -1,16 +1,30 @@
-// pages/blog/[id].js
-import { client } from "../../libs/client";
+import { client } from "../../libs/client"
+import CategoryButton from "../../components/categoryButton"
+import Image from "next/image"
 
 export default function BlogId({ content }: any) {
   return (
     <main>
-      <h1>{content.title}</h1>
-      <p>{content.publishedAt}</p>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${content.content}`,
-        }}
-      />
+      <div className="max-w-2xl bg-black mt-16">
+        <CategoryButton id={content.category.id} name={content.category.name} color={content.category.color} />
+        <h1 className="text-3xl font-bold mt-2.5">{content.title}</h1>
+        <p className="my-5">{content.publishedAt}</p>
+        <div className="relative w-full" style={{ height: 350 }}>
+          <Image
+            className="rounded-lg"
+            src={content.eyecatch ? content.eyecatch.url : ''}
+            layout='fill'
+            alt="card-image"
+            unoptimized={process.env.NODE_ENV === 'development'}
+          />
+        </div>
+        <div
+          className="tracking-wider leading-loose"
+          dangerouslySetInnerHTML={{
+            __html: `${content.content}`,
+          }}
+        />
+      </div>
     </main>
   );
 }

@@ -17,6 +17,7 @@ type EyeCatch = {
 }
 
 type Category = {
+  id: string
   name: string
   color: string
 }
@@ -28,7 +29,7 @@ type Tag = {
 
 const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) => {
   return (
-    <div className="relative flex flex-col w-1/2 p-3">
+    <div className="relative flex flex-col w-1/2 p-3 cursor-pointer">
       <Link href={`/blog/${href}`}>
         <div>
           <div className="relative pt-56 bg-top bg-cover rounded-t-lg">
@@ -43,7 +44,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
           <div className="flex-grow rounded-b-lg bg-white px-4 py-6">
             <div className="flex flex-col justify-start">
               <div>
-                <CategoryButton name={category.name} color={category.color} />
+                <CategoryButton id={category.id} name={category.name} color={category.color} />
               </div>
               <h3 className="text-black my-6 text-lg font-bold">
                 <Link href={`/blog/${href}`}>

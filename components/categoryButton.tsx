@@ -1,17 +1,21 @@
 import React from "react"
+import Link from "next/link"
 
 type Category = {
+  id: string
   name: string
   color: string
 }
 
-const CategoryButton: React.FC<Category> = ({ name, color }) => {
+const CategoryButton: React.FC<Category> = ({ id, name, color }) => {
   return (
-    <div>
-      <span className="rounded-full py-1 px-4 text-sm" style={{ backgroundColor: color ? color : "black" }}>
-        {name}
-      </span>
-    </div>
+    <Link href={`/category/${id}`}>
+      <div className="cursor-pointer inline-block">
+        <span className="rounded-full py-1 px-4 text-sm" style={{ backgroundColor: color ? color : "black" }}>
+          {name}
+        </span>
+      </div>
+    </Link>
   )
 }
 
