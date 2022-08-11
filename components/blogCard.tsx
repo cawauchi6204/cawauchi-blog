@@ -2,6 +2,8 @@ import React from "react"
 import Link from "next/link";
 import Image from 'next/image'
 
+import CategoryButton from "./categoryButton";
+
 type Props = {
   title: string
   href: string
@@ -28,7 +30,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
   return (
     <div className="relative flex flex-col w-1/2 p-3">
       <Link href={`/blog/${href}`}>
-        <a>
+        <div>
           <div className="relative pt-56 bg-top bg-cover rounded-t-lg">
             <Image
               className="bg-top bg-cover rounded-t-lg"
@@ -41,9 +43,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
           <div className="flex-grow rounded-b-lg bg-white px-4 py-6">
             <div className="flex flex-col justify-start">
               <div>
-                <div className="">
-                  <span className="rounded-full py-1 px-4 text-sm" style={{ backgroundColor: category.color ? category.color : "" }}>{category.name}</span>
-                </div>
+                <CategoryButton name={category.name} color={category.color} />
               </div>
               <h3 className="text-black my-6 text-lg font-bold">
                 <Link href={`/blog/${href}`}>
@@ -69,7 +69,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </Link>
     </div >
   )
