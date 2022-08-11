@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import { client } from '../libs/client'
+import BlogCard from "../components/blogCard"
 
 const Home: NextPage = ({ contents }: any) => {
   return (
@@ -14,15 +14,9 @@ const Home: NextPage = ({ contents }: any) => {
       </Head>
       <main>
         <div>
-          <ul>
-            {contents.map((content: any) => (
-              <li key={content.id}>
-                <Link href={`/blog/${content.id}`}>
-                  <a>{content.title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-wrap">
+            {contents.map((content: any) => <BlogCard key={content.id} title={content.title} href={content.id} category={content.category} eyeCatch={content.eyecatch} tags={content.tag} />)}
+          </div>
         </div>
       </main>
     </div>
