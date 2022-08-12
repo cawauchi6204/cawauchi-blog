@@ -24,3 +24,7 @@ a {
 		background: #0f0e17;
 	}
 }
+
+pre code {
+  border-radius: 8px;
+}
