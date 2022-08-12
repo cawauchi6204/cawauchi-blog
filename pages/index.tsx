@@ -13,10 +13,8 @@ const Home: NextPage = ({ contents }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div>
-          <div className="flex flex-wrap">
-            {contents.map((content: any) => <BlogCard key={content.id} title={content.title} href={content.id} category={content.category} eyeCatch={content.eyecatch} tags={content.tag} />)}
-          </div>
+        <div className="flex flex-wrap">
+          {contents.map((content: any) => <BlogCard key={content.id} title={content.title} href={content.id} category={content.category} eyeCatch={content.eyecatch} tags={content.tag} />)}
         </div>
       </main>
     </div>

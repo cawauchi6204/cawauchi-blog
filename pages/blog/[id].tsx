@@ -5,7 +5,7 @@ import Image from "next/image"
 export default function BlogId({ content }: any) {
   return (
     <main>
-      <div className="max-w-2xl bg-black mt-16">
+      <div className="max-w-3xl bg-black mt-16">
         <CategoryButton id={content.category.id} name={content.category.name} color={content.category.color} />
         <h1 className="text-3xl font-bold mt-2.5">{content.title}</h1>
         <p className="my-5">{content.publishedAt}</p>

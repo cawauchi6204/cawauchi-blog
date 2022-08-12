@@ -29,7 +29,7 @@ type Tag = {
 
 const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) => {
   return (
-    <div className="relative flex flex-col w-1/2 p-3 cursor-pointer">
+    <div className="flex flex-col w-1/2 p-3 cursor-pointer">
       <Link href={`/blog/${href}`}>
         <div>
           <div className="relative pt-56 bg-top bg-cover rounded-t-lg">
