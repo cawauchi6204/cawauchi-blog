@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import Sidebar from "./sidebar"
 
 const Layout = ({ children }: Props) => {
   return (
@@ -12,8 +13,13 @@ const Layout = ({ children }: Props) => {
           <a>About </a>
         </Link>
       </nav>
-      <div className="max-w-4xl m-auto">
-        {children}
+      <div className="flex gap-8">
+        <div className="w-1/3" >
+          <Sidebar />
+        </div>
+        <div className="2/3">
+          {children}
+        </div>
       </div>
     </div>
   );
