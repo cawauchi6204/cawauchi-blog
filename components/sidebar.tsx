@@ -1,5 +1,6 @@
 import React from "react"
 import Image from "next/image"
+import Toc from "./toc"
 
 type Props = {}
 
@@ -21,6 +22,7 @@ const Sidebar: React.FC<Props> = ({ }) => {
           埼玉在住のwebエンジニア｜2019年11月14日にプログラミング学習を開始しました 2020年8月1日からプログラマーデビューしました
         </p>
       </div>
+      <Toc tocs={[]} />
     </aside>
   )
 }

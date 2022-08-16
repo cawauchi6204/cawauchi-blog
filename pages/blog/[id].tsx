@@ -4,8 +4,16 @@ import Image from "next/image"
 import * as cheerio from 'cheerio';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/night-owl.css';
+import { useAtom } from 'jotai'
+import { tocAtom } from '../../libs/atoms'
+import { useEffect } from "react";
 
-export default function BlogId({ content,highlightedBody }: any) {
+export default function BlogId({ content, highlightedBody, toc }: any) {
+  const [, setTocs] = useAtom(tocAtom)
+  useEffect(() => {
+    setTocs(toc)
+  }, [])
+
   return (
     <main>
       <div className="max-w-3xl bg-black mt-16">
@@ -32,23 +40,43 @@ export default function BlogId({ content,highlightedBody }: any) {
   );
 }
 
-// データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async ({ params }: any) => {
   if (!params) return
   const id = params.id;
   const data = await client.get({ endpoint: "blogs", contentId: id });
 
-  const $ = cheerio.load(data.content);
-  $('pre code').each((_, elm) => {
-    const result = hljs.highlightAuto($(elm).text());
-    $(elm).html(result.value);
-    $(elm).addClass('hljs');
-  });
+  const activateSyntaxHighlight = (body: string): string => {
+    const $ = cheerio.load(body);
+    $('pre code').each((_, elm) => {
+      const result = hljs.highlightAuto($(elm).text());
+      $(elm).html(result.value);
+      $(elm).addClass('hljs');
+    });
+    return $.html()
+  }
+
+  const generateTOC = (body: string) => {
+    const $ = cheerio.load(body, { decodeEntities: false })
+    const headings = $('h1, h2, h3').toArray()
+    if (headings.length === 0) return []
+
+    return headings.map((data: cheerio.Element) => {
+      return (
+        {
+          id: data.attribs.id,
+          name: data.name,
+          // @ts-ignore
+          text: String(data.children[0].data)
+        })
+    })
+  }
+
 
   return {
     props: {
       content: data,
-      highlightedBody: $.html()
+      toc: generateTOC(data.content),
+      highlightedBody: activateSyntaxHighlight(data.content)
     },
   };
 };
