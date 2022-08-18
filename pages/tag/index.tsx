@@ -7,7 +7,7 @@ export default function Tags({ tags }: any) {
       <ul>
         {tags.map((tag: any) => (
           <li key={tag.id}>
-            <Link href={`/tag/${tag.id}`}>
+            <Link href={`/tag/${tag.id}`} scroll={false}>
               <a>{tag.name}</a>
             </Link>
           </li>

@@ -7,7 +7,7 @@ export default function Blogs({ categories }: any) {
       <ul>
         {categories.map((category: any) => (
           <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
+            <Link href={`/category/${category.id}`} scroll={false}>
               <a>{category.name}</a>
             </Link>
           </li>

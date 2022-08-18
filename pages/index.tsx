@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { client } from '../libs/client'
 import BlogCard from "../components/blogCard"
+import { motion } from 'framer-motion'
 
 const Home: NextPage = ({ contents }: any) => {
   return (
@@ -13,9 +14,15 @@ const Home: NextPage = ({ contents }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="flex flex-wrap">
-          {contents.map((content: any) => <BlogCard key={content.id} title={content.title} href={content.id} category={content.category} eyeCatch={content.eyecatch} tags={content.tag} />)}
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }} // 初期状態
+          animate={{ opacity: 1 }} // マウント時
+          exit={{ opacity: 0 }}    // アンマウント時
+        >
+          <div className="flex flex-wrap">
+            {contents.map((content: any) => <BlogCard key={content.id} title={content.title} href={content.id} category={content.category} eyeCatch={content.eyecatch} tags={content.tag} />)}
+          </div>
+        </motion.div>
       </main>
     </div>
   )

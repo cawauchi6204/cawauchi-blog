@@ -6,10 +6,10 @@ const Layout = ({ children }: Props) => {
   return (
     <div>
       <nav className="flex flex-rows p-2 text-white font-bold" style={{ backgroundColor: "#ff8906" }}>
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <a>Home</a>
         </Link>
-        <Link href="/about">
+        <Link href="/about" scroll={false}>
           <a>About </a>
         </Link>
       </nav>
