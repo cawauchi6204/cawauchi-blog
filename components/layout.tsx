@@ -5,12 +5,12 @@ import Sidebar from "./sidebar"
 const Layout = ({ children }: Props) => {
   return (
     <div>
-      <nav className="flex flex-rows p-2 text-white font-bold" style={{ backgroundColor: "#ff8906" }}>
+      <nav className="flex items-center gap-4 flex-rows p-2 text-white font-bold" style={{ backgroundColor: "#ff8906" }}>
         <Link href="/" scroll={false}>
-          <a>Home</a>
+          <a className="text-xl">cawauchi-blog</a>
         </Link>
         <Link href="/about" scroll={false}>
-          <a>About </a>
+          <a className="text-xl">About </a>
         </Link>
       </nav>
       <div className="flex gap-8">
