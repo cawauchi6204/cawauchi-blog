@@ -19,3 +19,5 @@ export const tocAtom: PrimitiveAtom<
 		text: '',
 	},
 ])
+
+export const loadingAtom: PrimitiveAtom<boolean> = atom(false)

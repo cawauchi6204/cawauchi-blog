@@ -9,7 +9,7 @@ type Category = {
 
 const CategoryButton: React.FC<Category> = ({ id, name, color }) => {
   return (
-    <Link href={`/category/${id}`}>
+    <Link href={`/category/${id}`} scroll={false}>
       <div className="cursor-pointer inline-block">
         <span className="rounded-full py-1 px-4 text-sm" style={{ backgroundColor: color ? color : "black" }}>
           {name}

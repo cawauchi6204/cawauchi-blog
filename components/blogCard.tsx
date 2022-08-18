@@ -30,7 +30,7 @@ type Tag = {
 const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) => {
   return (
     <div className="flex flex-col w-1/2 p-3 cursor-pointer">
-      <Link href={`/blog/${href}`}>
+      <Link href={`/blog/${href}`} scroll={false}>
         <div>
           <div className="relative pt-56 bg-top bg-cover rounded-t-lg">
             <Image
@@ -47,7 +47,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
                 <CategoryButton id={category.id} name={category.name} color={category.color} />
               </div>
               <h3 className="text-black my-6 text-lg font-bold">
-                <Link href={`/blog/${href}`}>
+                <Link href={`/blog/${href}`} scroll={false}>
                   <a>{title}</a>
                 </Link>
               </h3>
@@ -58,7 +58,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
                       tags.map((tag) => {
                         return (
                           <li key={tag.id} className="m-1">
-                            <Link href={`/tag/${tag.id}`}>
+                            <Link href={`/tag/${tag.id}`} scroll={false}>
                               <a>#{tag.name}</a>
                             </Link>
                           </li>

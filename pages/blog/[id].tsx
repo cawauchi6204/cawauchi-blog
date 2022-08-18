@@ -3,10 +3,11 @@ import CategoryButton from "../../components/categoryButton"
 import Image from "next/image"
 import * as cheerio from 'cheerio';
 import hljs from 'highlight.js'
-import 'highlight.js/styles/night-owl.css';
+import 'highlight.js/styles/night-owl.css'
 import { useAtom } from 'jotai'
 import { tocAtom } from '../../libs/atoms'
-import { useEffect } from "react";
+import { useEffect } from "react"
+import { motion } from 'framer-motion'
 
 export default function BlogId({ content, highlightedBody, toc }: any) {
   const [, setTocs] = useAtom(tocAtom)
@@ -16,27 +17,33 @@ export default function BlogId({ content, highlightedBody, toc }: any) {
 
   return (
     <main>
-      <div className="max-w-3xl bg-black mt-16">
-        <CategoryButton id={content.category.id} name={content.category.name} color={content.category.color} />
-        <h1 className="text-3xl font-bold mt-2.5">{content.title}</h1>
-        <p className="my-5">{content.publishedAt}</p>
-        <div className="relative w-full" style={{ height: 350 }}>
-          <Image
-            className="rounded-lg"
-            src={content.eyecatch ? content.eyecatch.url : ''}
-            layout='fill'
-            alt="card-image"
-            unoptimized={process.env.NODE_ENV === 'development'}
+      <motion.div
+        initial={{ opacity: 0 }} // 初期状態
+        animate={{ opacity: 1 }} // マウント時
+        exit={{ opacity: 0 }}    // アンマウント時
+      >
+        <div className="max-w-3xl bg-black mt-16">
+          <CategoryButton id={content.category.id} name={content.category.name} color={content.category.color} />
+          <h1 className="text-3xl font-bold mt-2.5">{content.title}</h1>
+          <p className="my-5">{content.publishedAt}</p>
+          <div className="relative w-full" style={{ height: 350 }}>
+            <Image
+              className="rounded-lg"
+              src={content.eyecatch ? content.eyecatch.url : ''}
+              layout='fill'
+              alt="card-image"
+              unoptimized={process.env.NODE_ENV === 'development'}
+            />
+          </div>
+          <div
+            className="tracking-wider leading-loose mt-8"
+            dangerouslySetInnerHTML={{
+              __html: highlightedBody,
+            }}
           />
         </div>
-        <div
-          className="tracking-wider leading-loose mt-8"
-          dangerouslySetInnerHTML={{
-            __html: highlightedBody,
-          }}
-        />
-      </div>
-    </main>
+      </motion.div>
+    </main >
   );
 }
 
