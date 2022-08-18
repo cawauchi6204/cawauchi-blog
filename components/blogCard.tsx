@@ -53,7 +53,7 @@ const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) =>
             tags.map((tag) => {
               return (
                 <li key={tag.id} className="m-1">
-                  <Link href={`/tag/${tag.id}`} scroll={false}>
+                  <Link href={`/tag/${tag.id}/page/1`} scroll={false}>
                     <a>#{tag.name}</a>
                   </Link>
                 </li>
