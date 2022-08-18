@@ -22,7 +22,7 @@ export default function BlogId({ content, highlightedBody, toc }: any) {
         animate={{ opacity: 1 }} // マウント時
         exit={{ opacity: 0 }}    // アンマウント時
       >
-        <div className="max-w-3xl bg-black mt-16">
+        <div className="max-w-3xl mt-16">
           <CategoryButton id={content.category.id} name={content.category.name} color={content.category.color} />
           <h1 className="text-3xl font-bold mt-2.5">{content.title}</h1>
           <p className="my-5">{content.publishedAt}</p>
