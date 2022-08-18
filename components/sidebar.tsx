@@ -6,7 +6,7 @@ type Props = {}
 
 const Sidebar: React.FC<Props> = ({ }) => {
   return (
-    <aside className="w-96 h-full bg-white text-black">
+    <aside className="w-96 min-h-screen h-full bg-white text-black">
       <div className="relative w-2/3 m-auto" style={{ height: 250 }}>
         <Image
           className="rounded-full border-8 border-black"
