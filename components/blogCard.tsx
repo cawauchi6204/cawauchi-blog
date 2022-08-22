@@ -30,7 +30,7 @@ type Tag = {
 const BlogCard: React.FC<Props> = ({ title, href, eyeCatch, category, tags }) => {
   return (
     <Link href={`/blog/${href}`} scroll={false}>
-      <div className="bg-white flex-grow flex flex-col w-1/3 m-4 cursor-pointer rounded-lg">
+      <div className="bg-white flex-grow flex flex-col m-4 cursor-pointer rounded-lg" style={{ "maxWidth": "45%" }}>
         <div className="relative pt-56 bg-top bg-cover">
           <Image
             className="max-h-80 bg-top bg-cover rounded-t-lg"

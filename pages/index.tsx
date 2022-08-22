@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { client } from '../libs/client'
+import { blogClient } from '../libs/blogClient'
 import BlogCard from "../components/blogCard"
 import { motion } from 'framer-motion'
 
@@ -30,7 +30,7 @@ const Home: NextPage = ({ contents }: any) => {
 
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: 'blogs' })
+  const data = await blogClient.get({ endpoint: 'blogs' })
 
   return {
     props: {

@@ -1,5 +1,5 @@
 import { GetStaticPropsContext, GetStaticPaths } from 'next'
-import { client } from '../../../../libs/client'
+import { blogClient } from '../../../../libs/blogClient'
 import BlogCard from "../../../../components/blogCard"
 import { motion } from 'framer-motion'
 
@@ -30,13 +30,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
       offset: string
     }
   }[] = []
-  const tagData = await client.get({
+  const tagData = await blogClient.get({
     endpoint: 'tags',
     queries: { limit: 9999, fields: 'id' }
   })
   const tagIds: string[] = tagData.contents.map((_tag: any) => _tag.id)
   for (let i = 0; i < tagIds.length; i++) {
-    const tagBlogs = await client.get({
+    const tagBlogs = await blogClient.get({
       endpoint: 'blogs',
       queries: { limit: 9999, filters: `tag[contains]${tagIds[i]}`, fields: 'totalCount' }
     })
@@ -55,10 +55,10 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   if (!params) return console.error('no context.params')
   const tag = params.tag as string
   const offset = Number(params.offset)
-  const tagInfo = await client.get({
+  const tagInfo = await blogClient.get({
     endpoint: 'tags', contentId: tag
   })
-  const blogs = await client
+  const blogs = await blogClient
     .get({
       endpoint: 'blogs',
       queries: { limit: PER_PAGE, offset: (Number(offset) - 1) * PER_PAGE, filters: `tag[contains]${tag}` }

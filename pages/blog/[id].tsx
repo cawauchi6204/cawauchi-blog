@@ -1,4 +1,4 @@
-import { client } from "../../libs/client"
+import { blogClient } from "../../libs/blogClient"
 import CategoryButton from "../../components/categoryButton"
 import Image from "next/image"
 import * as cheerio from 'cheerio';
@@ -50,7 +50,7 @@ export default function BlogId({ content, highlightedBody, toc }: any) {
 export const getStaticProps = async ({ params }: any) => {
   if (!params) return
   const id = params.id;
-  const data = await client.get({ endpoint: "blogs", contentId: id });
+  const data = await blogClient.get({ endpoint: "blogs", contentId: id });
 
   const activateSyntaxHighlight = (body: string): string => {
     const $ = cheerio.load(body);
@@ -90,7 +90,7 @@ export const getStaticProps = async ({ params }: any) => {
 
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
-  const data = await client.get({ endpoint: "blogs" });
+  const data = await blogClient.get({ endpoint: "blogs" });
 
   const paths = data.contents.map((content: any) => `/blog/${content.id}`);
   return { paths, fallback: false };

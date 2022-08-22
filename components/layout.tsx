@@ -13,11 +13,11 @@ const Layout = ({ children }: Props) => {
           <a className="text-xl">About </a>
         </Link>
       </nav>
-      <div className="flex gap-8">
+      <div className="flex">
         <div className="w-1/3" >
           <Sidebar />
         </div>
-        <div className="2/3">
+        <div className="w-2/3">
           {children}
         </div>
       </div>

@@ -6,8 +6,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    API_KEY: process.env.API_KEY,
-    SERVICE_DOMAIN: process.env.SERVICE_DOMAIN
+    BLOG_API_KEY: process.env.API_KEY,
+    BLOG_SERVICE_DOMAIN: process.env.SERVICE_DOMAIN
   },
   images: {
     domains: [
