@@ -5,7 +5,6 @@ import { AnimatePresence } from 'framer-motion'
 import Layout from "../components/layout"
 import '../styles/globals.css'
 import useLoading from '../hooks/useLoading'
-import { motion } from 'framer-motion'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useLoading()
